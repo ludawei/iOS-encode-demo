@@ -21,6 +21,5 @@
 + (NSString*) getSha512String:(NSString*)srcString;
 
 +(NSString *)testOpenssl:(NSString *)srcString;
-
-static void ToHex(const unsigned char* data, unsigned int length, char* buffer);
++(NSString *)urlEncodeString:(NSString *)srcString encode:(NSStringEncoding)encoding;
 @end

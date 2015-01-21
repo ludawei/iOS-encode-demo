@@ -14,7 +14,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        let txt:NSString = "abcdef"
+        let txt:NSString = "abc=def"
         NSLog("%@", LDEncode.getMd5_16Bit_String(txt));
         NSLog("%@", LDEncode.getMd5_32Bit_String(txt))
         NSLog("%@", LDEncode.getSha1String(txt))
@@ -33,6 +33,8 @@ class ViewController: UIViewController {
         NSLog("%@", gzipData.gunzippedData())
         
         NSLog("%@", LDEncode.testOpenssl(txt))
+        
+        NSLog("%@", LDEncode.urlEncodeString(txt, encode: NSASCIIStringEncoding))
     }
 
     override func didReceiveMemoryWarning() {

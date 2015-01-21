@@ -137,4 +137,17 @@ static void ToHex(const unsigned char* data, unsigned int length, char* buffer)
     ToHex(md_value, md_len, md_hex);
     return [NSString stringWithCString: md_hex encoding: NSASCIIStringEncoding];
 }
+
+// url加密方式
+static NSString * AFPercentEscapedQueryStringPairMemberFromStringWithEncoding(NSString *string, NSStringEncoding encoding) {
+    static NSString * const kAFCharactersToBeEscaped = @":/?&=;+!@#$()',*";
+    static NSString * const kAFCharactersToLeaveUnescaped = @"[].";
+    
+    return (__bridge_transfer  NSString *)CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault, (__bridge CFStringRef)string, (__bridge CFStringRef)kAFCharactersToLeaveUnescaped, (__bridge CFStringRef)kAFCharactersToBeEscaped, CFStringConvertNSStringEncodingToEncoding(encoding));
+}
+
++(NSString *)urlEncodeString:(NSString *)srcString encode:(NSStringEncoding)encoding
+{
+    return AFPercentEscapedQueryStringPairMemberFromStringWithEncoding(srcString, encoding);
+}
 @end
